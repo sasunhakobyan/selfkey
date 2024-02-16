@@ -4,18 +4,18 @@ interface NavBarProps {
     account: string | undefined;
     deactivate: () => void;
     handleConnectWallet: () => void;
-    decimalBalance: string;
+    accountBalance: string;
 }
 
 const NavBar = (props: NavBarProps) => {
-    const { account, deactivate, handleConnectWallet, decimalBalance } = props;
+    const { account, deactivate, handleConnectWallet, accountBalance } = props;
 
     return (
         <div className="flex flex-row items-start justify-between p-10">
             <img className='w-44 object-contain' src={logo} />
             {account ? (
                 <div className='p-4 rounded-md bg-gradient-to-r from-blue-500 to-purple-500'>
-                    <div className='text-white text-xl'>Balance: {decimalBalance}</div>
+                    <div className='text-white text-xl'>Balance: {accountBalance}</div>
                     <button onClick={deactivate} className='w-full mt-4 p-2 rounded-md text-white bg-black bg-opacity-50'>Logout</button>
                 </div>
             ) : (
