@@ -1,5 +1,5 @@
 import { ChainId, DAppProvider } from '@usedapp/core'
-import HomePage from './pages/HomePage';
+import HomePage from './components/HomePage';
 
 function App() {
   const config = {

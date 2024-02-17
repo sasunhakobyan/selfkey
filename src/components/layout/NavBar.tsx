@@ -1,21 +1,26 @@
-import logo from '../assets/logo.webp';
+import { useSelector } from 'react-redux';
+import logo from '../../assets/logo.webp';
+import { RootState } from '../../store/store';
+import { toViewNumber } from '../../toViewNumber';
 
 interface NavBarProps {
-    account: string | undefined;
     deactivate: () => void;
     handleConnectWallet: () => void;
-    accountBalance: string;
 }
 
 const NavBar = (props: NavBarProps) => {
-    const { account, deactivate, handleConnectWallet, accountBalance } = props;
+    const { deactivate, handleConnectWallet } = props;
+
+    const account = useSelector((state: RootState) => state.profile.account);
+    const accountBalance = useSelector((state: RootState) => state.profile.balance);
+    const balanceNumber = parseFloat(toViewNumber(accountBalance)).toFixed(5).toString();
 
     return (
         <div className="flex flex-row items-start justify-between p-10">
             <img className='w-44 object-contain' src={logo} />
             {account ? (
                 <div className='p-4 rounded-md bg-gradient-to-r from-blue-500 to-purple-500'>
-                    <div className='text-white text-xl'>Balance: {accountBalance}</div>
+                    <div className='text-white text-xl'>Balance: {balanceNumber}</div>
                     <button onClick={deactivate} className='w-full mt-4 p-2 rounded-md text-white bg-black bg-opacity-50'>Logout</button>
                 </div>
             ) : (

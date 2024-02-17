@@ -1,31 +1,17 @@
 import { useCall } from "@usedapp/core";
-import { Contract } from "ethers";
-import { useEffect, useState } from "react";
-import { getNumber } from "../utils/getNumber";
+import useStakeContract from "./useStakeContract";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
-const useStakedBalance = (contract: Contract, accountAddress?: string) => {
-    const [stakeBalance, setStakeBalance] = useState<number | undefined>(undefined);
+const useStakedBalance = () => {
+    const contract = useStakeContract();
+    const account = useSelector((state: RootState) => state.profile.account);
 
-    const { value, error } = useCall({
+    return useCall({
         contract,
         method: 'balanceOf',
-        args: [accountAddress],
-    }) ?? {};
-
-    useEffect(() => {
-        if (error) {
-            console.error(error.message);
-            return;
-        }
-
-        const amount = value?.[0];
-
-        if (amount) {
-            setStakeBalance(amount.toNumber());
-        }
-    }, [value, error])
-
-    return stakeBalance && getNumber(stakeBalance);
+        args: [account],
+    });
 }
 
 export default useStakedBalance;

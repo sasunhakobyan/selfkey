@@ -8,6 +8,7 @@ import successImage from '../assets/success.png';
 interface ModalState {
     image: string;
     message: string;
+    close?: () => void;
 }
 
 export const useModal = (status: string) => {
@@ -32,12 +33,9 @@ export const useModal = (status: string) => {
             case StakeStatus.Success:
                 setModal({
                     image: successImage,
-                    message: 'Congratulations! Your stake has been successfully processed'
+                    message: 'Congratulations! Your stake has been successfully processed',
+                    close: () => setModal(undefined)
                 });
-
-                setTimeout(() => {
-                    setModal(undefined);
-                }, 5000)
 
                 break;
             default:

@@ -1,4 +1,4 @@
 export enum TabOptions {
-    Deposit = 'Deposit',
+    Stake = 'Stake',
     Withdraw = 'Withdraw',
 }
