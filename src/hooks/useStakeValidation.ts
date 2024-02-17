@@ -1,9 +1,8 @@
-import { RegisterOptions } from 'react-hook-form';
-import { IFormInput } from '../types/FormInput';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
 import { ethers } from 'ethers';
+import { useCallback } from 'react';
 
 export const useStakeValidation = (accountBalance: string) => {
     const minStakeAmount = useSelector((state: RootState) => state.profile.minStakeAmount);
@@ -11,7 +10,7 @@ export const useStakeValidation = (accountBalance: string) => {
     const minStakeNumber = ethers.utils.formatEther(minStakeAmount || '0');
     const accountBalanceNumber = ethers.utils.formatEther(accountBalance || '0');
 
-    const inputValidationOptions: RegisterOptions<IFormInput, "amount"> = {
+    const inputValidationOptions = useCallback(() => ({
         required: {
             value: true,
             message: 'Please enter an amount',
@@ -24,8 +23,8 @@ export const useStakeValidation = (accountBalance: string) => {
             value: accountBalanceNumber,
             message: `Amount must be less than or equal to ${accountBalanceNumber}`,
         },
-        validate: (value) => !isNaN(Number(value)) || 'Please enter a valid number',
-    };
+        validate: (value: string) => !isNaN(Number(value)) || 'Please enter a valid number',
+    }), [accountBalance]);
 
     return inputValidationOptions;
 };

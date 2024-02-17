@@ -4,7 +4,7 @@ interface ModalProps {
     close?: () => void;
 }
 
-const Modal = (props: ModalProps) => {
+const ModalMessage = (props: ModalProps) => {
     return (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-90">
             <div className="bg-transparent p-6 rounded-lg shadow-lg text-center animate-endlessPopIn">
@@ -25,4 +25,4 @@ const Modal = (props: ModalProps) => {
     );
 }
 
-export default Modal;
+export default ModalMessage;

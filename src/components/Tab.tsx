@@ -1,4 +1,4 @@
-import { TabOptions } from "../../types/TabOptions"
+import { TabOptions } from "../types/TabOptions"
 
 interface TabProps {
     tab: TabOptions;

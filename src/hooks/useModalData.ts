@@ -11,7 +11,7 @@ interface ModalState {
     close?: () => void;
 }
 
-export const useModal = (status: string) => {
+export const useModalData = (status: string) => {
     const [modal, setModal] = useState<ModalState | undefined>(undefined);
 
     useEffect(() => {

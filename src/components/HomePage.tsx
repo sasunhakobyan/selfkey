@@ -7,7 +7,7 @@ import { setAccount, setBalance, setMinStakeAmount } from "../store/profileSlice
 import logo from '../assets/logo.webp';
 import useMinStakeAmount from "../hooks/useMinStakeAmount";
 import { TabOptions } from "../types/TabOptions";
-import Tab from "./layout/Tab";
+import Tab from "./Tab";
 import StakeForm from "./StakeForm";
 import WithdrawForm from "./WithdrawForm";
 import GlowEffect from "./layout/GlowEffect";

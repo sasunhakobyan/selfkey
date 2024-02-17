@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import logo from '../../assets/logo.webp';
 import { RootState } from '../../store/store';
-import { toViewNumber } from '../../toViewNumber';
+import { formatNumber } from '../../utils';
 
 interface NavBarProps {
     deactivate: () => void;
@@ -13,7 +13,7 @@ const NavBar = (props: NavBarProps) => {
 
     const account = useSelector((state: RootState) => state.profile.account);
     const accountBalance = useSelector((state: RootState) => state.profile.balance);
-    const balanceNumber = parseFloat(toViewNumber(accountBalance)).toFixed(5).toString();
+    const balanceNumber = parseFloat(formatNumber(accountBalance)).toFixed(5).toString();
 
     return (
         <div className="flex flex-row items-start justify-between p-10">

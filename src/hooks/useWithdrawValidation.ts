@@ -1,8 +1,7 @@
-import { RegisterOptions } from 'react-hook-form';
-import { IFormInput } from '../types/FormInput';
+import { useCallback } from 'react';
 
 export const useWithdrawValidation = (stakedNumber: string) => {
-    const inputValidationOptions: RegisterOptions<IFormInput, "amount"> = {
+    const inputValidationOptions = useCallback(() => ({
         required: {
             value: true,
             message: 'Please enter an amount',
@@ -15,8 +14,8 @@ export const useWithdrawValidation = (stakedNumber: string) => {
             value: stakedNumber,
             message: `Amount must be less than or equal to ${stakedNumber}`,
         },
-        validate: (value) => !isNaN(Number(value)) || 'Please enter a valid number',
-    };
+        validate: (value: string) => !isNaN(Number(value)) || 'Please enter a valid number',
+    }), [stakedNumber])
 
     return inputValidationOptions;
 };
